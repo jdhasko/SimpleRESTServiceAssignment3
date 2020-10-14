@@ -28,29 +28,35 @@ namespace Assignment3RESTService.Controllers
         }
 
         // GET api/<BookController>/5
-        [HttpGet("{id}")]
-        public Book Get(string isbn)
+        [HttpGet("{isbn13}")]
+        public Book Get(string isbn13)
         {
 
-            return Library.Find(x => x.Isbn13 == isbn);
+            return Library.Find(x => x.Isbn13 == isbn13);
         }
 
         // POST api/<BookController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Book newBook)
         {
+            Library.Add(newBook);
         }
 
         // PUT api/<BookController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{isbn13}")]
+        public void Put(string isbn13, [FromBody] Book newBook)
         {
+            int index = Library.FindIndex(x => x.Isbn13 == isbn13);
+            newBook.Isbn13 = isbn13;
+            Library[index] = newBook;
         }
 
         // DELETE api/<BookController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{isbn13}")]
+        public void Delete(string isbn13)
         {
+            Library.RemoveAll(x => x.Isbn13 == isbn13);
+
         }
     }
 }
