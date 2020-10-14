@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using MyClassLibary;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace Assignment3RESTService.Controllers
+{
+    [Route("[controller]")]
+    [ApiController]
+    public class BookController : ControllerBase
+    {
+        private static List<Book> Library = new List<Book>
+        {
+            new Book("Witcher", "Andrzej Sapkowski", 489, "9780316029186"),
+            new Book("Call Me By Your Name", "André Aciman", 256,"1298364542832"),
+            new Book("The Bible","God",456,"1111111111111")
+        };
+
+        // GET: api/<BookController>
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "value1", "value2" };
+        }
+
+        // GET api/<BookController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        // POST api/<BookController>
+        [HttpPost]
+        public void Post([FromBody] string value)
+        {
+        }
+
+        // PUT api/<BookController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE api/<BookController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
+    }
+}
