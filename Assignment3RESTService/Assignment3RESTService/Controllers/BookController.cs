@@ -22,16 +22,17 @@ namespace Assignment3RESTService.Controllers
 
         // GET: api/<BookController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Book> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            return Library;
         }
 
         // GET api/<BookController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Book Get(string isbn)
         {
-            return "value";
+
+            return Library.Find(x => x.Isbn13 == isbn);
         }
 
         // POST api/<BookController>
